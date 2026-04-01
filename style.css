@@ -1,20 +1,128 @@
-/* 🌌 GLOBAL */
+
 body {
-  margin: 0;
   font-family: 'Poppins', sans-serif;
-  background: radial-gradient(circle at top, #1a1a2e, #0f172a);
-  color: white;
-  overflow-x: hidden;
+  background: linear-gradient(135deg, #1e1e2f, #2a2a40);
+  margin: 0;
+  padding: 20px;
+  color: #ffffff;
 }
 
-/* 🎮 TITLE */
-h1 {
-  font-size: 3rem;
+.title {
   text-align: center;
-  margin-bottom: 20px;
+  font-size: 2.5rem;
+  margin-bottom: 30px;
 }
 
-/* 🧊 SCREENS */
+
+.card {
+  background: #2f2f45;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 25px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+
+h2 {
+  margin-bottom: 10px;
+}
+
+
+button {
+  border: none;
+  padding: 10px 18px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: white;
+  cursor: pointer;
+  transition: 0.2s;
+  font-weight: 500;
+}
+
+button:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+
+.controls {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-top: 10px;
+}
+
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 80px);
+  gap: 10px;
+  margin-top: 15px;
+}
+
+
+.cell {
+  width: 80px;
+  height: 80px;
+  border-radius: 10px;
+  background: #3b3b5a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+.cell:hover {
+  background: #4c4c75;
+}
+
+
+.tom {
+  background: #3b82f6;
+}
+
+
+.jerry {
+  background: #f59e0b;
+}
+
+
+input {
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  width: 70%;
+  margin-right: 10px;
+  background: #1e1e2f;
+  color: white;
+}
+
+input::placeholder {
+  color: #aaa;
+}
+
+input:focus {
+  outline: 2px solid #6366f1;
+}
+
+
+.aaj_ke_kaam div {
+  margin-top: 10px;
+  padding: 10px;
+  background: #3b3b5a;
+  border-radius: 10px;
+}
+
 .screen {
   display: none;
   text-align: center;
@@ -26,7 +134,7 @@ h1 {
   display: block;
 }
 
-/* 🎮 GAME ZONE */
+
 .khel {
   display: none;
   padding: 30px;
@@ -37,29 +145,7 @@ h1 {
   display: block;
 }
 
-/* 🎯 BUTTON STYLE */
-button {
-  border: none;
-  padding: 12px 22px;
-  border-radius: 12px;
-  font-size: 16px;
-  cursor: pointer;
-  background: linear-gradient(135deg, #6366f1, #8b5cf6);
-  color: white;
-  transition: all 0.25s ease;
-  box-shadow: 0 8px 20px rgba(99,102,241,0.3);
-}
 
-button:hover {
-  transform: translateY(-3px) scale(1.05);
-  box-shadow: 0 12px 30px rgba(99,102,241,0.5);
-}
-
-button:active {
-  transform: scale(0.95);
-}
-
-/* 🎮 GAME BUTTON GRID */
 .gameWaleButtons {
   display: flex;
   justify-content: center;
@@ -67,80 +153,20 @@ button:active {
   margin-top: 40px;
 }
 
-/* 🧩 GAME CARDS */
 .khelBtn {
-  padding: 30px 40px;
+  padding: 25px 35px;
   font-size: 18px;
-  border-radius: 20px;
-  background: linear-gradient(135deg, #1e293b, #334155);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  border-radius: 18px;
+  background: #2f2f45;
+  transition: 0.3s;
 }
 
 .khelBtn:hover {
+  transform: translateY(-5px);
   background: linear-gradient(135deg, #6366f1, #8b5cf6);
 }
 
-/* 🎯 GRID */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(3, 90px);
-  gap: 12px;
-  justify-content: center;
-  margin-top: 20px;
-}
 
-/* 🧩 CELL */
-.cell {
-  width: 90px;
-  height: 90px;
-  border-radius: 12px;
-  background: #1e293b;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  transition: 0.2s;
-}
-
-.cell:hover {
-  background: #334155;
-}
-
-/* 🟦 TOM */
-.tom {
-  background: linear-gradient(135deg, #3b82f6, #2563eb);
-  box-shadow: 0 0 20px rgba(59,130,246,0.7);
-}
-
-/* 🟧 JERRY */
-.jerry {
-  background: linear-gradient(135deg, #f59e0b, #d97706);
-  box-shadow: 0 0 20px rgba(245,158,11,0.7);
-}
-
-/* 📝 INPUT */
-input {
-  padding: 12px;
-  border-radius: 12px;
-  border: none;
-  width: 60%;
-  background: #1e293b;
-  color: white;
-}
-
-input:focus {
-  outline: 2px solid #6366f1;
-}
-
-/* 📌 TASK */
-.aaj_ke_kaam div {
-  margin-top: 12px;
-  padding: 12px;
-  background: #1e293b;
-  border-radius: 12px;
-}
-
-/* ✨ ANIMATIONS */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
