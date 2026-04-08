@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>GameNest | The Neon Observatory</title>
+  
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+              "on-surface": "#dee5ff",
+              "secondary-dim": "#699cff",
+              "surface": "#060e20",
+              "surface-bright": "#1f2b49",
+              "surface-container": "#0f1930",
+              "surface-tint": "#ba9eff",
+              "on-surface-variant": "#a3aac4",
+              "on-primary-fixed": "#000000",
+              "outline": "#6d758c",
+              "primary-fixed": "#ae8dff",
+              "surface-container-high": "#141f38",
+              "primary-dim": "#8455ef",
+              "surface-variant": "#192540",
+              "secondary": "#699cff",
+              "error": "#ff6e84",
+              "primary": "#ba9eff",
+              "outline-variant": "#40485d",
+              "background": "#060e20",
+              "surface-container-highest": "#192540",
+              "surface-container-lowest": "#000000"
+          },
+          "fontFamily": {
+              "headline": ["Manrope", "sans-serif"],
+              "body": ["Inter", "sans-serif"],
+              "label": ["Inter", "sans-serif"]
+          }
+        },
+      },
+    }
+  </script>
+
+  <link rel="stylesheet" href="./style.css" />
+
+  <style>
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    .hide-scrollbar::-webkit-scrollbar { display: none; }
+    .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    body { min-height: max(100vh, 100dvh); background-color: #060e20; }
+  </style>
+</head>
+<body class="bg-background text-on-surface font-body selection:bg-primary/30 selection:text-primary overflow-x-hidden">
+
+
+  <div class="flex flex-col min-h-screen relative transition-all duration-300 mx-auto max-w-7xl">
+
+    <header class="sticky top-0 z-30 bg-background/80 backdrop-blur-md border-b border-outline-variant/10">
+      <div class="px-6 py-5 flex items-center justify-center">
+          <h2 class="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary font-headline">GameNest Hub</h2>
+      </div>
+    </header>
+
+ 
+    <main id="dashboard" class="flex-1 px-6 md:px-12 py-8 transition-opacity duration-300">
+      
+
+      <section id="secMyGames" class="mb-16">
+        <div class="flex items-end justify-between mb-8">
+          <h3 class="text-3xl font-headline font-bold text-on-surface flex items-center gap-2">
+            <span class="material-symbols-outlined text-secondary text-3xl">folder_special</span> 
+            My Games
+          </h3>
+        </div>
+        <div id="localGamesContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+   
+        </div>
+      </section>
+
+      <section id="secExplore">
+        <div class="flex items-end justify-between mb-8">
+          <h3 class="text-3xl font-headline font-bold text-on-surface flex items-center gap-2">
+             <span class="material-symbols-outlined text-primary text-3xl">explore</span> 
+             Explore 
+          </h3>
+        </div>
+
+        <div id="loadingGames" class="py-20 text-center">
+           <span class="material-symbols-outlined animate-spin text-5xl text-primary mb-4">settings</span>
+           <p class="text-on-surface-variant font-headline animate-pulse">Initializing global game network...</p>
+        </div>
+
+        <div id="exploreContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+
+        </div>
+      </section>
+    </main>
+
+    <div id="gameLoader" class="hidden absolute inset-0 z-50 bg-background flex flex-col items-center justify-center transition-opacity duration-500 opacity-0 min-h-screen">
+        <div class="relative w-32 h-32 mb-8 flex items-center justify-center">
+            <div class="absolute inset-0 rounded-full border-4 border-surface-container-highest"></div>
+            <div class="absolute inset-0 rounded-full border-4 border-primary border-t-transparent animate-spin"></div>
+            <span class="material-symbols-outlined text-5xl text-primary animate-pulse">videogame_asset</span>
+        </div>
+        <h2 id="loaderGameTitle" class="text-3xl font-headline font-bold mb-4 text-on-surface text-center px-4">Loading Module...</h2>
+        <p id="funFact" class="text-on-surface-variant text-center max-w-lg px-6 italic transition-all">"Booting primary subroutines..."</p>
+    </div>
+
+    <!-- GAME PLAY/DETAILS VIEW -->
+    <main id="gameView" class="hidden flex-1 absolute inset-0 bg-background z-40 transition-opacity duration-500 opacity-0 overflow-y-auto min-h-screen">
+       <!-- Header/Close Button -->
+       <div class="sticky top-0 z-50 bg-background/80 backdrop-blur-xl border-b border-outline-variant/10 px-6 py-4 flex items-center justify-between">
+           <button id="closeGameBtn" class="flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors font-headline font-bold group">
+               <span class="material-symbols-outlined group-hover:-translate-x-1 transition-transform">arrow_back</span>
+               Back to Hub
+           </button>
+           <h3 id="viewTitle" class="font-headline font-bold text-xl truncate px-4">Game Title</h3>
+           <div class="w-24"></div> <!-- Spacer -->
+       </div>
+
+       <div class="max-w-4xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+           
+           <!-- Game Info Banner -->
+           <div class="bg-surface-container-highest rounded-3xl p-6 mb-8 flex flex-col md:flex-row gap-8 items-center border border-outline-variant/10 shadow-xl relative overflow-hidden">
+               <img id="viewImage" src="" class="absolute inset-0 w-full h-full object-cover opacity-10 blur-xl" />
+               <div class="relative w-full md:w-64 aspect-video rounded-2xl overflow-hidden shadow-2xl shrink-0 border border-outline-variant/20">
+                   <img id="viewThumbnail" src="" class="w-full h-full object-cover" />
+               </div>
+               <div class="relative flex-1 space-y-4">
+                   <div class="flex items-center gap-3">
+                       <span id="viewGenre" class="bg-primary/20 text-primary text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Genre</span>
+                       <span id="viewPlatformText" class="bg-secondary/20 text-secondary text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Platform</span>
+                   </div>
+                   <p id="viewDescription" class="text-on-surface-variant leading-relaxed line-clamp-3">Description...</p>
+                   <div class="pt-2 flex gap-4">
+                      <a id="viewPlayBtn" target="_blank" class="hidden bg-gradient-to-r from-primary to-secondary px-8 py-3 rounded-xl text-on-primary-fixed font-headline font-bold shadow-[0_0_20px_rgba(186,158,255,0.3)] hover:scale-105 active:scale-95 transition-all w-max">
+                          Launch Title <span class="material-symbols-outlined text-sm align-middle ml-1">open_in_new</span>
+                      </a>
+                   </div>
+               </div>
+           </div>
+
+           <!-- LOCAL GAMES CONTAINER (Your Games go here) -->
+           <div id="localGameContainer" class="hidden">
+                <div class="bg-surface text-on-surface p-8 rounded-3xl border border-outline-variant/20 shadow-2xl overflow-hidden relative">
+                    <!-- Global styling isolator for your classic CSS -->
+                    <div class="local-game-root mx-auto flex flex-col items-center">
+                        
+                        <!-- Original Game 1: Tom & Jerry -->
+                        <section id="local_tomjerry" class="local-game-card hidden w-full max-w-lg">
+                            <h2 class="text-2xl font-bold mb-2">Tom & Jerry Grid</h2>
+                            <p class="mb-4 text-on-surface-variant">Click <strong>Start</strong> to begin, then use arrow keys or buttons to catch Jerry.</p>
+
+                            <div class="controls mb-4">
+                              <button id="startBtn" class="px-4 py-2 bg-primary text-black rounded font-bold hover:opacity-80">Start</button>
+                              <span id="status" class="ml-4 font-bold text-secondary">Press Start to play</span>
+                            </div>
+
+                            <div id="grid" class="grid grid-cols-3 gap-2 w-max bg-surface-container p-4 rounded-xl shadow-inner border border-outline-variant/20"></div>
+
+                            <div class="controls mt-6 max-w-[200px] grid grid-cols-3 gap-2 place-items-center">
+                              <div></div>
+                              <button id="up" class="w-12 h-12 bg-surface-bright rounded text-xl hover:bg-primary hover:text-black">↑</button>
+                              <div></div>
+                              <button id="left" class="w-12 h-12 bg-surface-bright rounded text-xl hover:bg-primary hover:text-black">←</button>
+                              <button id="down" class="w-12 h-12 bg-surface-bright rounded text-xl hover:bg-primary hover:text-black">↓</button>
+                              <button id="right" class="w-12 h-12 bg-surface-bright rounded text-xl hover:bg-primary hover:text-black">→</button>
+                            </div>
+                        </section>
+
+                        <!-- Original Game 2: Rock Paper Scissors -->
+                        <section id="local_rps" class="local-game-card hidden w-full max-w-lg">
+                            <h2 class="text-2xl font-bold mb-2">Rock Paper Scissors</h2>
+                            <p class="mb-6 text-on-surface-variant">Click the button to enter your choice (Rock, Paper, or Scissors) in the prompt window.</p>
+                            <div class="controls flex items-center gap-6">
+                              <button class="px-8 py-3 rounded-xl bg-gradient-to-r from-secondary to-primary font-bold text-black hover:scale-105 transition" id="btn_chakka">Play Match</button>
+                              <span class="text-xl font-bold bg-surface-container-high px-6 py-3 rounded-xl border border-outline-variant/30">Score: <span class="score text-primary">0</span></span>
+                            </div>
+                        </section>
+
+                        <!-- Original Game 3: To-Do List -->
+                        <section id="local_todo" class="local-game-card hidden w-full max-w-lg">
+                            <h2 class="text-2xl font-bold mb-2">Mission Log (To-Do)</h2>
+                            <p class="mb-6 text-on-surface-variant">Add quests and track progress.</p>
+
+                            <div class="todo flex gap-4 mb-8">
+                              <input class="flex-1 bg-surface-container-high text-xl px-4 py-3 rounded-xl border border-outline-variant/20 focus:border-primary focus:outline-none" id="add" placeholder="Write a task..." />
+                              <button class="task_btn px-6 py-3 bg-primary text-black font-bold rounded-xl hover:bg-primary-dim transition">Add</button>
+                            </div>
+
+                            <div class="aaj_ke_kaam flex flex-col gap-3"></div>
+                        </section>
+
+                    </div>
+                </div>
+           </div>
+
+       </div>
+    </main>
+
+  </div>
+
+  <script src="./script.js"></script>
+</body>
+</html>
