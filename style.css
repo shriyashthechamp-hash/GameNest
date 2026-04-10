@@ -110,3 +110,105 @@
   from { opacity: 0; transform: scale(0.9); }
   to { opacity: 1; transform: scale(1); }
 }
+
+/* ==========================================
+   NEW GAMES CSS
+   ========================================== */
+
+/* Tic Tac Toe */
+.ttt-board {
+  display: grid;
+  grid-template-columns: repeat(3, 88px);
+  gap: 10px;
+  margin: 16px 0;
+  width: fit-content;
+}
+
+.ttt-cell {
+  width: 88px;
+  height: 88px;
+  background: #1f2b49;
+  border: 2px solid rgba(105,156,255,0.2);
+  border-radius: 12px;
+  font-size: 2rem;
+  font-weight: 800;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s, transform 0.1s;
+  user-select: none;
+}
+
+.ttt-cell:hover {
+  background: #2a3a60;
+  transform: scale(1.04);
+}
+
+.ttt-cell.x { color: #699cff; }
+.ttt-cell.o { color: #ba9eff; }
+
+/* Memory Card Game */
+.memory-board {
+  display: grid;
+  grid-template-columns: repeat(4, 68px);
+  gap: 10px;
+  margin: 16px 0;
+  width: fit-content;
+}
+
+.memory-card {
+  width: 68px;
+  height: 68px;
+  background: #1f2b49;
+  border: 2px solid rgba(105,156,255,0.2);
+  border-radius: 10px;
+  font-size: 1.6rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  user-select: none;
+}
+
+.memory-card:hover { background: #2a3a60; transform: scale(1.05); }
+.memory-card.flipped { background: #2d1f49; border-color: rgba(186,158,255,0.4); }
+.memory-card.matched { background: #1a3a2a; color: #4ade80; border-color: #4ade80; cursor: default; }
+
+
+.reaction-box {
+  width: 100%;
+  max-width: 420px;
+  height: 150px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s;
+  user-select: none;
+  margin: 16px 0;
+  background: #2a1f49;
+  border: 2px solid rgba(186,158,255,0.2);
+  color: #dee5ff;
+}
+
+
+.guess-input {
+  background: #0f1930;
+  border: 2px solid rgba(105,156,255,0.3);
+  border-radius: 12px;
+  color: #dee5ff;
+  font-size: 1.2rem;
+  padding: 10px 16px;
+  width: 100%;
+  max-width: 280px;
+  text-align: center;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.guess-input:focus { border-color: #699cff; }

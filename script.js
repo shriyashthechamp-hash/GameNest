@@ -172,7 +172,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 gameLoader.classList.remove('opacity-0');
             });
 
-            // Set fun fact quotes
+      
             loaderGameTitle.textContent = `Warming up "${game.title}"...`;
             funFact.textContent = "Connecting to matchmaking servers...";
             try {
@@ -372,7 +372,7 @@ window.initTomJerry = function() {
     if(controls.right) controls.right.addEventListener('click', () => moveTom('right'));
 
     document.addEventListener('keydown', (e) => {
-        // Only run if the local game container is active
+      
         const localContainer = document.getElementById('local_tomjerry');
         if (!localContainer || localContainer.classList.contains('hidden')) return;
 
@@ -511,9 +511,7 @@ let deleteButtons = document.getElementsByClassName("delete");
 let vada = new Promise((resolve) => {})
 console.log(vada)
 };
-// ==========================================
-// NEW GAMES — INIT FUNCTIONS
-// ==========================================
+
 
 let tttInitialized = false;
 window.initTicTacToe = function() {

@@ -175,7 +175,7 @@
                             </div>
                         </section>
 
-                        <!-- Original Game 2: Rock Paper Scissors -->
+              
                         <section id="local_rps" class="local-game-card hidden w-full max-w-lg">
                             <h2 class="text-2xl font-bold mb-2">Rock Paper Scissors</h2>
                             <p class="mb-6 text-on-surface-variant">Click the button to enter your choice (Rock, Paper, or Scissors) in the prompt window.</p>
@@ -185,7 +185,7 @@
                             </div>
                         </section>
 
-                        <!-- Original Game 3: To-Do List -->
+
                         <section id="local_todo" class="local-game-card hidden w-full max-w-lg">
                             <h2 class="text-2xl font-bold mb-2">Mission Log (To-Do)</h2>
                             <p class="mb-6 text-on-surface-variant">Add quests and track progress.</p>
@@ -196,6 +196,56 @@
                             </div>
 
                             <div class="aaj_ke_kaam flex flex-col gap-3"></div>
+                        </section>
+
+
+                        <section id="local_tictactoe" class="local-game-card hidden w-full max-w-lg">
+                            <h2 class="text-2xl font-bold mb-2">Tic Tac Toe</h2>
+                            <p class="mb-4 text-on-surface-variant">Two players take turns. Get 3 in a row to win!</p>
+                            <p class="text-sm mb-1 text-on-surface-variant">Current turn: <span id="tttCurrentPlayer" class="font-bold text-primary">X</span></p>
+                            <div id="tttBoard" class="ttt-board"></div>
+                            <div class="controls mt-4">
+                                <button id="tttResetBtn" class="px-4 py-2 bg-primary text-black rounded font-bold hover:opacity-80">Reset</button>
+                                <span id="tttStatus" class="ml-4 font-bold text-secondary">Your move, X!</span>
+                            </div>
+                        </section>
+
+                    
+                        <section id="local_memory" class="local-game-card hidden w-full max-w-lg">
+                            <h2 class="text-2xl font-bold mb-2">Memory Card Game</h2>
+                            <p class="mb-4 text-on-surface-variant">Flip cards to find matching pairs. Match all to win!</p>
+                            <p class="text-sm mb-1 text-on-surface-variant">Moves: <span id="memoryMoves" class="font-bold text-primary">0</span></p>
+                            <div id="memoryBoard" class="memory-board"></div>
+                            <div class="controls mt-4">
+                                <button id="memoryResetBtn" class="px-4 py-2 bg-primary text-black rounded font-bold hover:opacity-80">New Game</button>
+                                <span id="memoryStatus" class="ml-4 font-bold text-secondary"></span>
+                            </div>
+                        </section>
+
+
+                        <section id="local_reaction" class="local-game-card hidden w-full max-w-lg">
+                            <h2 class="text-2xl font-bold mb-2">Reaction Time Game</h2>
+                            <p class="mb-4 text-on-surface-variant">Wait for green, then click as fast as you can!</p>
+                            <div id="reactionBox" class="reaction-box">Click Start to begin</div>
+                            <div class="controls mt-4">
+                                <button id="reactionStartBtn" class="px-4 py-2 bg-primary text-black rounded font-bold hover:opacity-80">Start</button>
+                                <span id="reactionResult" class="ml-4 font-bold text-secondary"></span>
+                            </div>
+                        </section>
+
+
+                        <section id="local_guess" class="local-game-card hidden w-full max-w-lg">
+                            <h2 class="text-2xl font-bold mb-2">Number Guessing Game</h2>
+                            <p class="mb-6 text-on-surface-variant">I am thinking of a number between 1 and 100. Can you guess it?</p>
+                            <div class="flex flex-col items-center gap-4">
+                                <input id="guessInput" class="guess-input" type="number" min="1" max="100" placeholder="Enter your guess..." />
+                                <button id="guessBtn" class="px-8 py-3 rounded-xl bg-gradient-to-r from-secondary to-primary font-bold text-black hover:scale-105 transition">Guess!</button>
+                                <p id="guessMsg" class="text-xl font-bold"></p>
+                                <p class="text-on-surface-variant text-sm">Attempts: <span id="guessAttempts" class="font-bold text-primary">0</span></p>
+                            </div>
+                            <div class="controls mt-4">
+                                <button id="guessResetBtn" class="px-4 py-2 bg-surface-bright text-on-surface rounded font-bold hover:opacity-80">New Number</button>
+                            </div>
                         </section>
 
                     </div>
