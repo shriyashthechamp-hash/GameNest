@@ -1,4 +1,4 @@
-/* Scoped Vanilla CSS for original mini-games */
+
 
 .local-game-root {
   font-family: 'Poppins', sans-serif;
@@ -14,7 +14,7 @@
   margin-bottom: 10px;
 }
 
-/* Original Game UI elements */
+
 .local-game-root .controls {
   display: flex;
   gap: 10px;
@@ -24,7 +24,7 @@
 
 .local-game-root .grid {
   display: flex;
-  flex-wrap: wrap; /* Fallback for grid */
+  flex-wrap: wrap; 
   width: 260px;
   gap: 10px;
   margin-top: 15px;
